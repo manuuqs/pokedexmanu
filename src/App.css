@@ -1,0 +1,81 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh; /* Asegura que la página ocupe al menos el 100% de la altura de la ventana */
+  font-family: Arial, sans-serif; /* Fuente general de la página */
+}
+
+.pokemon {
+  padding: 30px; /* Aumenta el padding para hacer el div más grande */
+  border: 5px solid black; /* Borde negro */
+  border-radius: 15px; /* Bordes redondeados opcional */
+  width: 90%; /* Ajusta el ancho para ocupar un mayor porcentaje del contenedor */
+  max-width: 500px; /* Aumenta el máximo ancho para permitir un tamaño mayor */
+  margin: 20px auto; /* Centramos el div y damos espacio */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+  text-align: center; /* Centramos todo el contenido */
+}
+
+.pokemon:hover {
+  transform: scale(1.05); /* Efecto hover para agrandar un poco el div */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Sombra más profunda al hacer hover */
+}
+
+.pokemon img {
+  width: 100%; /* Imagen responsive */
+  height: auto; /* Mantener la proporción */
+  border-radius: 10px;
+}
+
+.tipo {
+  margin-top: 15px;
+  list-style: none;
+  padding: 0;
+  text-align: center; /* Centramos la lista de tipos */
+}
+
+.tipo h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.tipo li {
+  display: inline-block; /* Mostramos los tipos en línea */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: capitalize;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: black; /* Letras negras */
+}
+
+@media screen and (max-width: 768px) {
+  .pokemon {
+      width: 95%; /* Se adapta mejor en pantallas pequeñas */
+      max-width: 90%; /* Ajustamos el máximo ancho para pantallas pequeñas */
+  }
+
+  .pokemon h1 {
+      font-size: 1.5em; /* Título más pequeño en pantallas pequeñas */
+  }
+
+  .tipo li {
+      font-size: 0.9em; /* Tamaño de texto más pequeño */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pokemon {
+      width: 100%; /* Aún más grande para móviles */
+      padding: 15px; /* Reducimos el padding en móviles */
+  }
+
+  .pokemon h1 {
+      font-size: 1.2em; /* Título más pequeño en pantallas muy pequeñas */
+  }
+}
