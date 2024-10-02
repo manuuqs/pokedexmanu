@@ -14,10 +14,19 @@ export function usePokemon({search}) {
             setError(null);
             previousSearch.current = search;
             const newPokemon = await searchPokemon({ search }); // Añadido await
-            setPokemon(newPokemon);
-            console.log('search 2', newPokemon)
+
+            if(!newPokemon){
+              setPokemon(null)
+              setError("Pokemon no encontrado en la Pokedex 😢")
+            }else{
+              setPokemon(newPokemon)
+              setError(null)
+            }
+
+          // eslint-disable-next-line no-unused-vars
           } catch (e) {
-            setError(e.message);
+            setError("Pokemon no encontrado en la Pokedex 😢");
+            setPokemon(null)
           } finally {
             setLoading(false);
           }

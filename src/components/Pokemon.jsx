@@ -1,8 +1,14 @@
 
 import typeColors from "../mocks/typeColors.json"
+import confetti from "canvas-confetti"
+import { useEffect } from "react";
 
 /* eslint-disable react/prop-types */
 function PokemonEncontrado({ pokemon }) {
+
+    useEffect(() => {
+        confetti(); // Dispara confetti solo cuando se encuentra el Pokémon
+    }, [pokemon]); // Solo se ejecuta cuando el Pokémon cambia
 
     const tipos = pokemon.tipos.map(tipo => tipo.type.name);
 

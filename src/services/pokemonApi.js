@@ -15,6 +15,7 @@ export const  searchPokemon = async ({search}) => {
             }          
         
 
+    // eslint-disable-next-line no-unused-vars
     }catch(e){
         throw new Error('Error searching pokemones')
     }

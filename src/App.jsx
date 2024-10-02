@@ -32,37 +32,40 @@ return { search, updateSearch, error }
 
 function App() {
 
-  const { search, updateSearch, error } = useSearch()
-  const { pokemon, loading, getPokemon } = usePokemon({ search })
+  const { search, updateSearch, error: searchError } = useSearch()
+  const { pokemon, loading, getPokemon, error } = usePokemon({ search })
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    getPokemon({ search })
-  }
+ // const handleSubmit = (event) => {
+ //   event.preventDefault()
+  //  getPokemon({ search })
+  //}
 
   const debouncedGetPokemon = useCallback(
-    debounce(search => {
-      console.log('pokemon buscado: ', search)
-      getPokemon({ search })
-    }, 300)
-    , [getPokemon]
-  )
+    debounce((search) => {
+      getPokemon({ search });
+    }, 300),
+    [getPokemon]
+  );
 
   const handleChange = (event) => {
-    const newSearch = event.target.value
-    updateSearch(newSearch)
-    debouncedGetPokemon(newSearch)
-  }
+    const newSearch = event.target.value;
+    updateSearch(newSearch);
+
+    if (newSearch.length > 2) {
+      // Solo ejecutamos la búsqueda cuando hay más de 2 caracteres
+      debouncedGetPokemon(newSearch);
+    }
+  };
 
   return (
     <div className='page'>
       <header>
         <h1>POKEDEX</h1>
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form' onSubmit={(e) => e.preventDefault()}>
         <input
             style={{
               border: '1px solid transparent',
-              borderColor: error ? 'red' : 'transparent'
+              borderColor: searchError ? 'red' : 'transparent'
             }}
              onChange={handleChange} value={search} name='query' placeholder='Pikachu, Charmander, Wartortle...'
           />
@@ -70,9 +73,11 @@ function App() {
         </form>
       </header>
       <main>
-        {
-          loading ? <p>Buscando Pokemon...</p> : <Pokemon pokemon={pokemon} />
-        }
+        {loading && <p>Buscando Pokémon...</p>}
+
+        {!loading && error && <p>{error}</p>} {/* Mostrar el error */}
+
+        {!loading && !error && pokemon && <Pokemon pokemon={pokemon} />} {/* Mostrar el Pokémon solo si no hay error y existe */}
       </main>
     </div>
   )
