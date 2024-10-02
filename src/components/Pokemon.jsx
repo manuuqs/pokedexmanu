@@ -1,4 +1,4 @@
-import { PokemonAudio } from "./PokeAudio";
+
 import typeColors from "../mocks/typeColors.json"
 
 /* eslint-disable react/prop-types */
@@ -12,10 +12,12 @@ function PokemonEncontrado({ pokemon }) {
 
     return (
         <div className="pokemon" key={pokemon.id} style={backgroundStyle}>
-            <h1>{pokemon.name.toUpperCase() + '!!'}</h1>
+            <h1>{pokemon.name.toUpperCase() + '!'}</h1>
             <img src={pokemon.imagen} alt={pokemon.name} />
             
-            <PokemonAudio pokemon={pokemon} />
+            <audio autoPlay>
+                <source src={pokemon.sonido} type="audio/ogg" />
+            </audio>
 
             <ul className="tipo">
                 <h3>El pokemon es de tipo:</h3>
