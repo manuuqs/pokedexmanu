@@ -16,7 +16,7 @@ function PokemonEncontrado({ pokemon }) {
             <img src={pokemon.imagen} alt={pokemon.name} />
             
             <audio autoPlay>
-                <source src={pokemon.sonido} type="audio/ogg" />
+                <source src={pokemon.sonido} type="audio/mpeg" />
             </audio>
 
             <ul className="tipo">
